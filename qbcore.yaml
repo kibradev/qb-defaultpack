@@ -1,0 +1,179 @@
+$engine: 3
+$onesync: on
+name: QBCore Framework
+version: 2.2.4
+author: JericoFx & Kakarot & Hamy
+description: An advanced FiveM RP framework including jobs, gangs, housing & more!
+
+tasks:
+  #  Download Base Files
+  - action: download_github
+    src: https://github.com/qbcore-framework/txAdminRecipe
+    ref: main
+    dest: ./tmp/qbcore
+
+  - action: move_path
+    src: ./tmp/qbcore/server.cfg
+    dest: ./server.cfg
+
+  - action: move_path
+    src: ./tmp/qbcore/myLogo.png
+    dest: ./myLogo.png
+
+  # Prepare Database
+  - action: connect_database
+  - action: query_database
+    file: ./tmp/qbcore/qbcore.sql
+    
+
+  # STANDALONE
+  - action: download_github
+    src: https://github.com/citizenfx/cfx-server-data
+    subpath: resources
+    dest: ./resources/[cfx-default]
+
+  - action: download_file
+    path: ./tmp/files/oxmysql.zip
+    url: https://github.com/overextended/oxmysql/releases/download/v2.3.4/oxmysql.zip
+  - action: unzip
+    dest: ./resources/[standalone]
+    src: ./tmp/files/oxmysql.zip
+
+  - action: download_file
+    path: ./tmp/menuv.zip
+    url: https://github.com/ThymonA/menuv/releases/download/v1.4.1/menuv_v1.4.1.zip
+  - action: unzip
+    dest: ./resources/[standalone]/menuv
+    src: ./tmp/menuv.zip
+
+  - action: download_github
+    dest: ./resources/[standalone]/bob74_ipl
+    ref: master
+    src: https://github.com/qbcore-framework/bob74_ipl
+    
+  - action: download_github
+    dest: ./resources/[standalone]/screenshot-basic
+    ref: master
+    src: https://github.com/citizenfx/screenshot-basic
+
+  - action: download_github
+    dest: ./resources/[standalone]/progressbar
+    ref: main
+    src: https://github.com/qbcore-framework/progressbar
+
+  - action: download_github
+    dest: ./resources/[standalone]/interact-sound
+    ref: master
+    src: https://github.com/qbcore-framework/interact-sound
+
+  - action: download_github
+    dest: ./resources/[standalone]/connectqueue
+    ref: master
+    src: https://github.com/qbcore-framework/connectqueue
+
+  - action: download_github
+    dest: ./resources/[standalone]/PolyZone
+    ref: master
+    src: https://github.com/qbcore-framework/PolyZone
+    
+  - action: download_github
+    dest: ./resources/[standalone]/LegacyFuel
+    ref: master
+    src: https://github.com/qbcore-framework/LegacyFuel
+    
+  # Downloading QBCore resources
+  - action: download_github
+    dest: ./resources/[qb]/qb-core
+    ref: main
+    src: https://github.com/qbcore-framework/qb-core
+
+    
+  - action: download_github
+    dest: ./resources/[qb]/qb-adminmenu
+    ref: main
+    src: https://github.com/qbcore-framework/qb-adminmenu
+
+  - action: download_github
+    dest: ./resources/[qb]/qb-multicharacter
+    ref: main
+    src: https://github.com/qbcore-framework/qb-multicharacter
+    
+  - action: download_github
+    dest: ./resources/[qb]/qb-target
+    ref: main
+    src: https://github.com/qbcore-framework/qb-target
+
+  - action: waste_time # prevent github throttling
+    seconds: 10
+
+  - action: download_github
+    dest: ./resources/[qb]/qb-vehicleshop
+    ref: main
+    src: https://github.com/qbcore-framework/qb-vehicleshop
+
+  - action: download_github
+    dest: ./resources/[qb]/qb-inventory
+    ref: main
+    src: https://github.com/qbcore-framework/qb-inventory
+
+  - action: download_github
+    dest: ./resources/[qb]/qb-houses
+    ref: main
+    src: https://github.com/qbcore-framework/qb-houses
+
+  - action: download_github
+    dest: ./resources/[qb]/qb-garages
+    ref: main
+    src: https://github.com/qbcore-framework/qb-garages
+
+  - action: download_github
+    dest: ./resources/[qb]/qb-ambulancejob
+    ref: main
+    src: https://github.com/qbcore-framework/qb-ambulancejob
+
+  - action: waste_time # prevent github throttling
+    seconds: 10
+
+  - action: download_github
+    dest: ./resources/[qb]/qb-weathersync
+    ref: main
+    src: https://github.com/qbcore-framework/qb-weathersync
+
+  - action: download_github
+    dest: ./resources/[qb]/qb-apartments
+    ref: main
+    src: https://github.com/qbcore-framework/qb-apartments
+
+  - action: download_github
+    dest: ./resources/[qb]/qb-phone
+    ref: main
+    src: https://github.com/qbcore-framework/qb-phone
+
+  - action: download_github
+    dest: ./resources/[qb]/qb-weapons
+    ref: main
+    src: https://github.com/qbcore-framework/qb-weapons
+
+  - action: download_github
+    dest: ./resources/[qb]/qb-spawn
+    ref: main
+    src: https://github.com/qbcore-framework/qb-spawn
+
+  - action: download_github
+    dest: ./resources/[qb]/qb-interior
+    ref: main
+    src: https://github.com/qbcore-framework/qb-interior
+    
+  - action: download_github
+    dest: ./resources/[qb]/qb-menu
+    ref: main
+    src: https://github.com/qbcore-framework/qb-menu
+    
+  - action: download_github
+    dest: ./resources/[qb]/qb-input
+    ref: main
+    src: https://github.com/qbcore-framework/qb-input
+
+  # Clean up
+  - action: remove_path
+    path: ./tmp
